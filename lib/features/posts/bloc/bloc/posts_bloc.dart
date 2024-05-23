@@ -37,7 +37,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
               category: jsonData[i]['category']);
           myPosts.add(post);
         }
-        emit(PostsFetchingSuccessful(posts: myPosts));
+        emit(PostsFetchingSuccessfulState(posts: myPosts));
         print("PRICE: GHs ${myPosts[4].price}");
       } else {
         print('Request failed with status: ${response.statusCode}.');
