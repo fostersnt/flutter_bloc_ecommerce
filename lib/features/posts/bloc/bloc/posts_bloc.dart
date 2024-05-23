@@ -22,7 +22,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       // https://jsonplaceholder.typicode.com/posts/
 
       var response = await http.get(url);
-      List<PostsModel> posts = [];
+      List<PostsModel> myPosts = [];
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         print("JSON DATA COUNT === ${jsonData.length}");
@@ -35,9 +35,10 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
               description: jsonData[i]['description'],
               image: jsonData[i]['image'],
               category: jsonData[i]['category']);
-          posts.add(post);
+          myPosts.add(post);
         }
-        print("PRICE: GHs ${posts[4].price}");
+        emit(PostsFetchingSuccessful(posts: myPosts));
+        print("PRICE: GHs ${myPosts[4].price}");
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }
