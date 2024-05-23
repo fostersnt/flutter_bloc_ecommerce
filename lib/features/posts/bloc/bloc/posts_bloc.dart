@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce/models/posts_model.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,11 +22,22 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       // https://jsonplaceholder.typicode.com/posts/
 
       var response = await http.get(url);
-
+      List<PostsModel> posts = [];
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-
-        print(jsonData);
+        print("JSON DATA COUNT === ${jsonData.length}");
+        for (var i = 0; i < jsonData.length; i++) {
+          // print("YOUR DATA IS === ${jsonData[i]['id']}");
+          PostsModel post = PostsModel(
+              id: jsonData[i]['id'],
+              title: jsonData[i]['title'],
+              price: jsonData[i]['price'].toDouble(),
+              description: jsonData[i]['description'],
+              image: jsonData[i]['image'],
+              category: jsonData[i]['category']);
+          posts.add(post);
+        }
+        print("PRICE: GHs ${posts[4].price}");
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }
