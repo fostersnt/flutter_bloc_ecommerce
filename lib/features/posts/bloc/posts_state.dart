@@ -12,7 +12,7 @@ class PostsFetchingLoadState extends PostsState {}
 class PostsFetchingErrorState extends PostsState {}
 
 class PostsFetchingSuccessfulState extends PostsState {
-  final List<PostsModel> posts;
+  final List<PostModel> posts;
 
   PostsFetchingSuccessfulState({required this.posts});
 }

@@ -1,4 +1,4 @@
-class PostsModel {
+class PostModel {
   final int id;
   final String title;
   final double price;
@@ -6,7 +6,7 @@ class PostsModel {
   final String image;
   final String category;
 
-  PostsModel(
+  PostModel(
       {required this.id,
       required this.title,
       required this.price,
@@ -15,8 +15,8 @@ class PostsModel {
       required this.category});
 
 //The method below converts a json data to a posts model
-  factory PostsModel.fromJson(Map<String, dynamic> myJsonData) {
-    return PostsModel(
+  factory PostModel.fromJson(Map<String, dynamic> myJsonData) {
+    return PostModel(
         id: myJsonData['id'],
         title: myJsonData['title'],
         price: myJsonData['price'],
