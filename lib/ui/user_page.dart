@@ -29,19 +29,24 @@ class UserPage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: successfulSate.users.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: index > 0
-                        ? const EdgeInsets.symmetric(vertical: 10)
-                        : null,
-                    padding: const EdgeInsets.all(10),
-                    color: Colors.grey.shade200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(successfulSate.users[index].name),
-                        Text(successfulSate.users[index].age.toString()),
-                        Text(successfulSate.users[index].address)
-                      ],
+                  return Padding(
+                    padding: index > 0
+                        ? const EdgeInsets.symmetric(vertical: 8.0)
+                        : const EdgeInsets.symmetric(vertical: 0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        color: Colors.grey.shade200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(successfulSate.users[index].name),
+                            Text(successfulSate.users[index].age.toString()),
+                            Text(successfulSate.users[index].address)
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },
