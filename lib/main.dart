@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,
         ),
-        body: const UserPage(),
-        // body: PostsPage(),
+        // body: const UserPage(),
+        body: PostsPage(),
       ),
     );
   }

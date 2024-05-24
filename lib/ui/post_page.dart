@@ -10,8 +10,6 @@ class PostsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     postsBloc.add(PostsInitialFetchEvent());
-    // TODO: implement build
-    // throw UnimplementedError();
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -19,49 +17,79 @@ class PostsPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           child: BlocConsumer<PostsBloc, PostsState>(
             bloc: postsBloc,
-            listener: (context, state) {
-              // print(state);
-            },
+            listener: (context, state) {},
             listenWhen: (previous, current) => current is PostsActionState,
             buildWhen: (previous, current) => current is! PostsActionState,
             builder: (context, state) {
               if (state.runtimeType == PostsFetchingSuccessfulState) {
                 final successState = state as PostsFetchingSuccessfulState;
                 return Container(
-                  // padding: const EdgeInsets.all(10),
-                  // margin: const EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
-                  // height: MediaQuery.of(context).size.height * .25,
-                  // color: Colors.grey.shade200,
                   child: ListView.builder(
                     itemCount: successState.posts.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                          padding: const EdgeInsets.all(10),
-                          color: Colors.grey.shade200,
-                          margin: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                successState.posts[index].title.toString(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(successState.posts[index].description
-                                  .toString()),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Image.network(
-                                successState.posts[index].image.toString(),
-                                // height: 300,
-                              ),
-                            ],
-                          ));
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                              padding: const EdgeInsets.all(10),
+                              color: Colors.grey.shade200,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    successState.posts[index].title.toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(successState.posts[index].description
+                                      .toString()),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "GHs ${successState.posts[index].price.toString()}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.red),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.network(
+                                      successState.posts[index].image
+                                          .toString(),
+                                      height: 300,
+                                      width: MediaQuery.of(context).size.width,
+                                      fit: BoxFit.fitWidth,
+                                      loadingBuilder:
+                                          (context, child, progress) {
+                                        if (progress == null) return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: progress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? progress
+                                                        .cumulativeBytesLoaded /
+                                                    progress.expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      );
                     },
                   ),
                 );
