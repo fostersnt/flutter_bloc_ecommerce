@@ -20,13 +20,11 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("E-commerce"),
-          // iconTheme: const IconThemeData(color: Colors.amber),
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,
         ),
         body: PostsPage(),
       ),
-      // home: const MyHomePage(title: "Foster's Store"),
     );
   }
 }

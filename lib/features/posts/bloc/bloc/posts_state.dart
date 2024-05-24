@@ -7,6 +7,10 @@ final class PostsInitial extends PostsState {}
 
 abstract class PostsActionState extends PostsState {}
 
+class PostsFetchingLoadState extends PostsState {}
+
+class PostsFetchingErrorState extends PostsState {}
+
 class PostsFetchingSuccessfulState extends PostsState {
   final List<PostsModel> posts;
 
