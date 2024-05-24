@@ -1,11 +1,11 @@
 import 'package:ecommerce/features/posts/bloc/posts_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PostsPage extends StatelessWidget {
   final PostsBloc postsBloc = PostsBloc();
+
+  PostsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,17 @@ class PostsPage extends StatelessWidget {
           child: BlocConsumer<PostsBloc, PostsState>(
             bloc: postsBloc,
             listener: (context, state) {},
-            listenWhen: (previous, current) => current is PostsActionState,
+            // listenWhen: (previous, current) => current is PostsActionState,
             buildWhen: (previous, current) => current is! PostsActionState,
             builder: (context, state) {
+              if (state.runtimeType == PostsFetchingLoadState) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
               if (state.runtimeType == PostsFetchingSuccessfulState) {
                 final successState = state as PostsFetchingSuccessfulState;
-                return Container(
-                  width: MediaQuery.of(context).size.width,
+                return SizedBox(
                   child: ListView.builder(
                     itemCount: successState.posts.length,
                     itemBuilder: (context, index) {
@@ -98,7 +102,9 @@ class PostsPage extends StatelessWidget {
                   ),
                 );
               } else {
-                return const SizedBox();
+                return const Center(
+                  child: Text("No Data Found"),
+                );
               }
             },
           ),

@@ -3,6 +3,7 @@ import 'package:ecommerce/ui/user_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,
         ),
+        // body: const Text("GHANA IS GHANA"),
         // body: const UserPage(),
         body: PostsPage(),
       ),

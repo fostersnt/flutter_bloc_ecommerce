@@ -13,18 +13,14 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<PostsInitialFetchEvent>(postsInitialFetchEvent);
   }
 
-  final PostsRepo _postsRepo = PostsRepo();
-
   FutureOr<void> postsInitialFetchEvent(
       PostsInitialFetchEvent event, Emitter<PostsState> emit) async {
+    emit(PostsFetchingLoadState());
     try {
-      emit(PostsFetchingLoadState());
-      var data = await _postsRepo.getPosts();
-      emit(PostsFetchingSuccessfulState(posts: data));
-      print("PRICE: GHs ${data[4].price}");
+      var postsData = await PostsRepo.fetchPosts();
+      emit(PostsFetchingSuccessfulState(posts: postsData));
     } catch (e) {
-      emit(PostsFetchingErrorState());
-      print(e);
+      print("MY ERROR MESSAGE: ${e.toString()}");
     }
   }
 }
