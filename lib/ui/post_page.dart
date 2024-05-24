@@ -46,8 +46,12 @@ class PostsPage extends StatelessWidget {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Text(successState.posts[index].description
-                                      .toString()),
+                                  Text(
+                                    successState.posts[index].description
+                                        .toString(),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.fade,
+                                  ),
                                   const SizedBox(
                                     height: 10,
                                   ),
