@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce/models/posts_model.dart';
-import 'package:ecommerce/repositories/posts_repo.dart';
+import 'package:ecommerce/models/post_model.dart';
+import 'package:ecommerce/repositories/post_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'posts_event.dart';

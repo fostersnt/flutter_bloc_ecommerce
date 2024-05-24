@@ -1,4 +1,5 @@
-import 'package:ecommerce/ui/posts_page.dart';
+import 'package:ecommerce/ui/post_page.dart';
+import 'package:ecommerce/ui/user_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,
         ),
-        body: PostsPage(),
+        body: const UserPage(),
+        // body: PostsPage(),
       ),
     );
   }
