@@ -1,39 +1,32 @@
 class PostModel {
   final int id;
+  final int userId;
   final String title;
-  final double price;
-  final String description;
-  final String image;
-  final String category;
+  final String body;
 
   PostModel(
       {required this.id,
+      required this.userId,
       required this.title,
-      required this.price,
-      required this.description,
-      required this.image,
-      required this.category});
+      required this.body});
 
 //The method below converts a json data to a posts model
   factory PostModel.fromJson(Map<String, dynamic> myJsonData) {
     return PostModel(
-        id: myJsonData['id'],
-        title: myJsonData['title'],
-        price: myJsonData['price'],
-        description: myJsonData['description'],
-        image: myJsonData['image'],
-        category: myJsonData['category']);
+      id: myJsonData['id'],
+      userId: myJsonData['userId'],
+      title: myJsonData['title'],
+      body: myJsonData['body'],
+    );
   }
 
 //The method below converts a posts model to json data
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'userId': userId,
       'title': title,
-      'price': price,
-      'description': description,
-      'image': image,
-      'category': category,
+      'body': body,
     };
   }
 }

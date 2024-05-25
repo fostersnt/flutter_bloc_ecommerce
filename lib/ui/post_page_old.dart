@@ -15,13 +15,13 @@ class PostsPage extends StatelessWidget {
         child: BlocBuilder<PostsBloc, PostsState>(
           bloc: postsBloc,
           builder: (context, state) {
-            if (state is PostsFetchingLoadState) {
+            if (state.runtimeType == PostsFetchingLoadState) {
               print("HELLO 1");
               return const CircularProgressIndicator(
                 color: Colors.amber,
               );
-            } else if (state is PostsFetchingSuccessfulState) {
-              final fetchedData = state;
+            } else if (state.runtimeType == PostsFetchingSuccessfulState) {
+              final fetchedData = state as PostsFetchingSuccessfulState;
               print("HELLO 2");
               return ListView.builder(
                 itemCount: fetchedData.posts.length,

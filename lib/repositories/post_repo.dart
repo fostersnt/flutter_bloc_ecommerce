@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 
 class PostsRepo {
   static Future<List<PostModel>> fetchPosts() async {
-    var url = Uri.parse('https://fakestoreapi.com/products');
+    var url = Uri.parse('https://jsonplaceholder.typicode.com/posts/');
+    // var url = Uri.parse('https://fakestoreapi.com/products');
     // https://jsonplaceholder.typicode.com/posts/
 
     var response = await http.get(url);
@@ -18,12 +19,11 @@ class PostsRepo {
       for (var i = 0; i < jsonData.length; i++) {
         // print("YOUR DATA IS === ${jsonData[i]['id']}");
         PostModel post = PostModel(
-            id: jsonData[i]['id'],
-            title: jsonData[i]['title'],
-            price: jsonData[i]['price'].toDouble(),
-            description: jsonData[i]['description'],
-            image: jsonData[i]['image'],
-            category: jsonData[i]['category']);
+          id: jsonData[i]['id'],
+          userId: jsonData[i]['userId'],
+          title: jsonData[i]['title'],
+          body: jsonData[i]['body'],
+        );
         myPosts.add(post);
       }
       return myPosts;

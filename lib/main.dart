@@ -1,6 +1,7 @@
+import 'package:ecommerce/features/posts/bloc/posts_bloc.dart';
 import 'package:ecommerce/ui/post_page.dart';
-import 'package:ecommerce/ui/user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,13 @@ class MyApp extends StatelessWidget {
         ),
         // body: const Text("GHANA IS GHANA"),
         // body: const UserPage(),
-        body: PostsPage(),
+        body: const PostsPage(),
+        // body: BlocProvider<PostsBloc>(
+        //   create: (context) {
+        //     return PostsBloc();
+        //   },
+        //   child: const PostsPage(),
+        // ),
       ),
     );
   }
