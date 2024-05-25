@@ -1,5 +1,6 @@
 import 'package:ecommerce/features/posts/bloc/posts_bloc.dart';
 import 'package:ecommerce/ui/post_page.dart';
+import 'package:ecommerce/ui/products/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         ),
         // body: const Text("GHANA IS GHANA"),
         // body: const UserPage(),
-        body: const PostsPage(),
+        body: const ProductPage(),
+        // body: const PostsPage(),
         // body: BlocProvider<PostsBloc>(
         //   create: (context) {
         //     return PostsBloc();
