@@ -1,6 +1,6 @@
-import 'package:ecommerce/features/products/bloc/product_bloc.dart';
-import 'package:ecommerce/features/products/bloc/product_event.dart';
-import 'package:ecommerce/features/products/bloc/product_state.dart';
+import 'package:ecommerce/data/bloc/products/product_bloc.dart';
+import 'package:ecommerce/data/bloc/products/product_event.dart';
+import 'package:ecommerce/data/bloc/products/product_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +10,9 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductBloc()..add(AllProductsFetchEvent()),
+      // create: (context) => ProductBloc()..add(AllProductsFetchEvent()),
+      create: (context) => ProductBloc(),
+      // context.read<ProductBloc>().add(AllProductsFetchEvent()),
       child: const ProductView(),
     );
   }
@@ -21,6 +23,7 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProductBloc>().add(AllProductsFetchEvent());
     return Center(
       child: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:ecommerce/api/api_endpoints.dart';
-import 'package:ecommerce/models/product_model.dart';
+import 'package:ecommerce/data/model/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductRepo {

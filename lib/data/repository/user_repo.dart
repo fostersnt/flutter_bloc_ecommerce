@@ -1,4 +1,4 @@
-import 'package:ecommerce/models/user_model.dart';
+import 'package:ecommerce/data/model/user_model.dart';
 
 class UserRepo {
   Future<List<UserModel>> users() async {
