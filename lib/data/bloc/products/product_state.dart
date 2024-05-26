@@ -5,13 +5,17 @@ sealed class ProductState {}
 
 class ProductInitialState extends ProductState {}
 
-class ProductLoadingState extends ProductState {}
+class ProductLoadState extends ProductState {}
 
-class ProductErrorState extends ProductState {}
+class ProductErrorState extends ProductState {
+  final String errorMessage;
 
-class ProductFetchedState extends ProductState {
+  ProductErrorState({required this.errorMessage});
+}
+
+class ProductSuccessState extends ProductState {
   final List<ProductModel> products;
-  ProductFetchedState({
+  ProductSuccessState({
     required this.products,
   });
 }

@@ -1,6 +1,8 @@
 import 'package:ecommerce/data/bloc/products/product_bloc.dart';
 import 'package:ecommerce/data/bloc/products/product_event.dart';
 import 'package:ecommerce/data/bloc/products/product_state.dart';
+import 'package:ecommerce/data/provider/product_provider.dart';
+import 'package:ecommerce/data/repository/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,11 +11,17 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      // create: (context) => ProductBloc()..add(AllProductsFetchEvent()),
-      create: (context) => ProductBloc(),
-      // context.read<ProductBloc>().add(AllProductsFetchEvent()),
-      child: const ProductView(),
+    return RepositoryProvider(
+      create: (context) =>
+          ProductRepository(productProvider: ProductProvider()),
+      child: BlocProvider(
+        create: (context) => ProductBloc(
+          productRepository: ProductRepository(
+            productProvider: ProductProvider(),
+          ),
+        ),
+        child: const ProductView(),
+      ),
     );
   }
 }
@@ -27,91 +35,51 @@ class ProductView extends StatelessWidget {
     return Center(
       child: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
-          if (state is ProductLoadingState) {
+          if (state is ProductLoadState) {
             print("DATA NOT PRESENT");
             return const CircularProgressIndicator();
-          } else if (state is ProductFetchedState) {
+          } else if (state is ProductSuccessState) {
             print("DATA PRESENT");
-            var productsData = state;
+            final productsData = state.products;
             return Padding(
               padding: const EdgeInsets.all(15.0),
               child: Center(
                 child: ListView.builder(
-                  itemCount: productsData.products.length,
+                  itemCount: productsData.length,
                   itemBuilder: (context, index) {
                     return Padding(
+                      // String url = productsData[index].image.toString();
                       padding: const EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          color: Colors.grey.shade200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                productsData.products[index].title,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Card(
+                          child: ListTile(
+                            leading: Container(
+                              width: 100,
+                              height: 150.0,
+                              child: Image.network(
+                                productsData[index].image.toString(),
+                                fit:
+                                    BoxFit.fill, // Adjust the fit to your needs
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                productsData.products[index].description,
-                                maxLines: 3,
-                                overflow: TextOverflow.fade,
-                                style: const TextStyle(),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "GHs ${productsData.products[index].price.toString()}",
-                                maxLines: 3,
-                                overflow: TextOverflow.fade,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.red,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Image.network(
-                                productsData.products[index].image,
-                                height: 350,
-                                width: MediaQuery.of(context).size.width,
-                                fit: BoxFit.fill,
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) {
-                                    return child;
-                                  } else {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                null
-                                            ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes!
-                                            : null,
-                                      ),
-                                    );
-                                  }
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Text(error.toString());
-                                },
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
+                            ),
+                            // CircleAvatar(
+                            //   backgroundImage: NetworkImage(
+                            //       productsData[index].image.toString(),
+                            //       scale: 200),
+                            // ),
+                            title: Text(
+                              productsData[index].title.toString(),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            subtitle: Text(
+                              productsData[index].description.toString(),
+                              maxLines: 5,
+                              overflow: TextOverflow.fade,
+                            ),
                           ),
                         ),
                       ),

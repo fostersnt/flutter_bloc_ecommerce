@@ -4,13 +4,11 @@ import 'package:ecommerce/api/api_endpoints.dart';
 import 'package:ecommerce/data/model/product_model.dart';
 import 'package:http/http.dart' as http;
 
-class ProductRepo {
-  static Future<List<ProductModel>> productsFetch() async {
+class ProductProvider {
+  Future<List<ProductModel>> productsFetch() async {
     List<ProductModel> myPosts = [];
     try {
-      FakeStoreAPI fakeStore = FakeStoreAPI();
-      var url = Uri.parse(
-          "${fakeStore.fakeStoreBaseUrl}${fakeStore.productsEndpoint}");
+      var url = Uri.parse("https://fakestoreapi.com/products");
       // print("MY URL: ${url}");
       var response = await http.get(url);
 

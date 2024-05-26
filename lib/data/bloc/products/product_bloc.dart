@@ -1,23 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ecommerce/data/bloc/products/product_event.dart';
 import 'package:ecommerce/data/bloc/products/product_state.dart';
-import 'package:ecommerce/data/repository/product_repo.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerce/data/provider/product_provider.dart';
+import 'package:ecommerce/data/repository/product_repository.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  ProductBloc() : super(ProductInitialState()) {
-    on<ProductEvent>(productsFetching);
-  }
+  final ProductRepository productRepository;
+  ProductBloc({required this.productRepository})
+      : super(ProductInitialState()) {
+    on<ProductEvent>((event, emit) async {
+      emit(ProductLoadState());
 
-  FutureOr<void> productsFetching(
-      ProductEvent event, Emitter<ProductState> emit) async {
-    try {
-      emit(ProductLoadingState());
-      var data = await ProductRepo.productsFetch();
-      emit(ProductFetchedState(products: data));
-    } catch (e) {
-      emit(ProductErrorState());
-    }
+      try {
+        final products = await productRepository.getAllData();
+        emit(ProductSuccessState(products: products));
+      } catch (e) {
+        emit(ProductErrorState(errorMessage: e.toString()));
+      }
+    });
   }
 }
