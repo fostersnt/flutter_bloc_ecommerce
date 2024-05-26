@@ -1,4 +1,6 @@
 import 'package:ecommerce/data/bloc/posts/posts_bloc.dart';
+import 'package:ecommerce/data/provider/post_provider.dart';
+import 'package:ecommerce/data/repository/post_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,21 +9,22 @@ class PostsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PostsBloc postsBloc = PostsBloc();
-    postsBloc.add(PostsInitialFetchEvent());
+    final PostsBloc postsBloc =
+        PostsBloc(PostRepository(postProvider: PostProvider()));
+    postsBloc.add(LoadPostsEvent());
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: BlocBuilder<PostsBloc, PostsState>(
           bloc: postsBloc,
           builder: (context, state) {
-            if (state.runtimeType == PostsFetchingLoadState) {
+            if (state.runtimeType == PostLoadingState) {
               print("HELLO 1");
               return const CircularProgressIndicator(
                 color: Colors.amber,
               );
-            } else if (state.runtimeType == PostsFetchingSuccessfulState) {
-              final fetchedData = state as PostsFetchingSuccessfulState;
+            } else if (state.runtimeType == PostSuccessState) {
+              final fetchedData = state as PostSuccessState;
               print("HELLO 2");
               return ListView.builder(
                 itemCount: fetchedData.posts.length,
@@ -42,7 +45,7 @@ class PostsPage extends StatelessWidget {
                   );
                 },
               );
-            } else if (state.runtimeType == PostsFetchingErrorState) {
+            } else if (state.runtimeType == PostErrorState) {
               print("HELLO 3");
               return const Text("Error");
             } else {

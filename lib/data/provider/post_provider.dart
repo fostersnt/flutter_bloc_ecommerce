@@ -6,9 +6,9 @@ import 'package:http/http.dart' as http;
 class PostProvider {
   Future<List<PostModel>> getPosts() async {
     try {
-      var url = Uri.parse('https://jsonplaceholder.typicode.com/posts/');
-
+      var url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
       var response = await http.get(url);
+      print("API API API");
 
       List<PostModel> myPosts = [];
 
@@ -25,11 +25,10 @@ class PostProvider {
           );
           myPosts.add(post);
         }
-        return myPosts;
-      } else {
-        return Future.error('Unknown error has occurred');
       }
+      return myPosts;
     } catch (e) {
+      print(e.toString());
       return Future.error(e.toString());
     }
   }

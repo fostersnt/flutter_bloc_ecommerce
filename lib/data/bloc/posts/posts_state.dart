@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'posts_bloc.dart';
 
 @immutable
@@ -7,12 +8,17 @@ final class PostsInitial extends PostsState {}
 
 abstract class PostsActionState extends PostsState {}
 
-class PostsFetchingLoadState extends PostsState {}
+class PostLoadingState extends PostsState {}
 
-class PostsFetchingErrorState extends PostsState {}
+class PostErrorState extends PostsState {
+  final String errorMessage;
+  PostErrorState({
+    required this.errorMessage,
+  });
+}
 
-class PostsFetchingSuccessfulState extends PostsState {
+class PostSuccessState extends PostsState {
   final List<PostModel> posts;
 
-  PostsFetchingSuccessfulState({required this.posts});
+  PostSuccessState({required this.posts});
 }

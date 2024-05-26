@@ -1,4 +1,4 @@
-import 'package:ecommerce/screens/product/product_page.dart';
+import 'package:ecommerce/screens/post/post_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,8 +26,14 @@ class MyApp extends StatelessWidget {
         ),
         // body: const Text("GHANA IS GHANA"),
         // body: const UserPage(),
-        body: const ProductPage(),
-        // body: const PostsPage(),
+        // body: const ProductPage(),
+        body: const PostsPage(),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     context.read<PostsBloc>().add(LoadPostsEvent());
+        //   },
+        //   child: const Icon(Icons.refresh),
+        // ),
         // body: BlocProvider<ProductBloc>(
         //   create: (context) => ProductBloc(),
         //   child: const ProductPage(),

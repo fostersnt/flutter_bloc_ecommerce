@@ -1,27 +1,26 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce/data/model/post_model.dart';
-import 'package:ecommerce/data/repository/post_repo.dart';
+import 'package:ecommerce/data/repository/post_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'posts_event.dart';
 part 'posts_state.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
-  PostsBloc() : super(PostsInitial()) {
-    on<PostsInitialFetchEvent>(postsInitialFetchEvent);
-  }
+  final PostRepository _postRepository;
+  PostsBloc(this._postRepository) : super(PostsInitial()) {
+    //Fetching posts data using the LoadPostsEvent
+    on<LoadPostsEvent>((event, emit) async {
+      emit(PostLoadingState());
 
-  Future<void> postsInitialFetchEvent(
-      PostsInitialFetchEvent event, Emitter<PostsState> emit) async {
-    emit(PostsFetchingLoadState());
-    try {
-      var postsData = await PostsRepo.fetchPosts();
-      emit(PostsFetchingSuccessfulState(posts: postsData));
-      print("DATA FETCHED");
-    } catch (e) {
-      print("MY ERROR MESSAGE: ${e.toString()}");
-    }
+      try {
+        final myPosts = await _postRepository.getPosts();
+        emit(PostSuccessState(posts: myPosts));
+      } catch (e) {
+        print("ERROR HAS OCCURRED: ${e.toString()}");
+        emit(PostErrorState(errorMessage: e.toString()));
+      }
+    });
   }
 }
