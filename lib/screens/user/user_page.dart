@@ -9,11 +9,11 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserBloc _userBloc = UserBloc();
-    _userBloc.add(GetUsersEvent());
+    final UserBloc userBloc = UserBloc();
+    userBloc.add(GetUsersEvent());
     return Container(
       child: BlocConsumer<UserBloc, UserState>(
-        bloc: _userBloc,
+        bloc: userBloc,
         listener: (context, state) {},
         listenWhen: (previous, current) {
           return true;

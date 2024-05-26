@@ -4,6 +4,7 @@ class ProductModel {
   final double price;
   final String description;
   final String category;
+  final String image;
   final Map<String, dynamic> rating;
 
   ProductModel(
@@ -12,6 +13,7 @@ class ProductModel {
       required this.price,
       required this.description,
       required this.category,
+      required this.image,
       required this.rating});
 
   factory ProductModel.fromJson(Map<String, dynamic> jsonData) {
@@ -21,6 +23,7 @@ class ProductModel {
         price: jsonData['price'],
         description: jsonData['description'],
         category: jsonData['category'],
+        image: jsonData['image'],
         rating: jsonData['rating']);
   }
 
@@ -31,6 +34,7 @@ class ProductModel {
       'price': price,
       'description': description,
       'category': category,
+      'image': image,
       'rating': rating,
     };
   }

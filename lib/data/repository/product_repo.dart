@@ -10,8 +10,8 @@ class ProductRepo {
     try {
       FakeStoreAPI fakeStore = FakeStoreAPI();
       var url = Uri.parse(
-          "${fakeStore.fakeStoreBaseUrl} ${fakeStore.productsEndpoint}");
-
+          "${fakeStore.fakeStoreBaseUrl}${fakeStore.productsEndpoint}");
+      // print("MY URL: ${url}");
       var response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -21,10 +21,11 @@ class ProductRepo {
           // print("YOUR DATA IS === ${jsonData[i]['id']}");
           ProductModel post = ProductModel(
               id: jsonData[i]['id'],
-              price: jsonData[i]['price'],
+              price: jsonData[i]['price'].toDouble(),
               title: jsonData[i]['title'],
               description: jsonData[i]['description'],
               category: jsonData[i]['category'],
+              image: jsonData[i]['image'],
               rating: jsonData[i]['rating']);
           myPosts.add(post);
         }

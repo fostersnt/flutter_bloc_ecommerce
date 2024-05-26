@@ -1,8 +1,5 @@
-import 'package:ecommerce/features/posts/bloc/posts_bloc.dart';
-import 'package:ecommerce/ui/post_page.dart';
 import 'package:ecommerce/ui/products/product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,11 +28,9 @@ class MyApp extends StatelessWidget {
         // body: const UserPage(),
         body: const ProductPage(),
         // body: const PostsPage(),
-        // body: BlocProvider<PostsBloc>(
-        //   create: (context) {
-        //     return PostsBloc();
-        //   },
-        //   child: const PostsPage(),
+        // body: BlocProvider<ProductBloc>(
+        //   create: (context) => ProductBloc(),
+        //   child: const ProductPage(),
         // ),
       ),
     );

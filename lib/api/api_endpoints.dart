@@ -1,5 +1,5 @@
 class ApiEndpoints {
-  final String fakeStoreBaseUrl = 'https://fakestoreapi.com/';
+  final String fakeStoreBaseUrl = 'https://fakestoreapi.com';
 }
 
 class FakeStoreAPI extends ApiEndpoints {

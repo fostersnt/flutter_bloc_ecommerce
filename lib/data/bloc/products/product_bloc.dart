@@ -6,7 +6,7 @@ import 'package:ecommerce/repositories/product_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  ProductBloc(super.initialState) {
+  ProductBloc() : super(ProductInitialState()) {
     on<ProductEvent>(productsFetching);
   }
 
