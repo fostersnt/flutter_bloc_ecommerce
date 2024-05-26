@@ -1,19 +1,33 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce/data/interface/i_repository.dart';
 import 'package:ecommerce/data/model/post_model.dart';
 import 'package:ecommerce/data/provider/post_provider.dart';
 
-abstract class IPostRepository {
-  Future<List<PostModel>> getPosts();
-}
-
-class PostRepository implements IPostRepository {
+class PostRepository implements IRepository<PostModel> {
   final PostProvider postProvider;
   PostRepository({
     required this.postProvider,
   });
 
   @override
-  Future<List<PostModel>> getPosts() {
+  Future<List<PostModel>> getAllData() {
     return postProvider.getPosts();
+  }
+
+  @override
+  Future<List<PostModel>> deleteData() {
+    // TODO: implement deleteData
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PostModel>> getSingleData() {
+    // TODO: implement getSingleData
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PostModel>> updateData() {
+    // TODO: implement updateData
+    throw UnimplementedError();
   }
 }

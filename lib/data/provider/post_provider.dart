@@ -8,7 +8,6 @@ class PostProvider {
     try {
       var url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
       var response = await http.get(url);
-      print("API API API");
 
       List<PostModel> myPosts = [];
 

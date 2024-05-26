@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce/data/model/post_model.dart';
 import 'package:ecommerce/data/repository/post_repository.dart';
@@ -15,7 +14,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       emit(PostLoadingState());
 
       try {
-        final myPosts = await _postRepository.getPosts();
+        final myPosts = await _postRepository.getAllData();
         emit(PostSuccessState(posts: myPosts));
       } catch (e) {
         print("ERROR HAS OCCURRED: ${e.toString()}");
