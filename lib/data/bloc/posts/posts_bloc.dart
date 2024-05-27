@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce/data/model/post_model.dart';
 import 'package:ecommerce/data/repository/post_repository.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 part 'posts_event.dart';

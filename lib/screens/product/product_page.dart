@@ -52,33 +52,37 @@ class ProductView extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Card(
-                          child: ListTile(
-                            leading: Container(
-                              width: 100,
-                              height: 150.0,
-                              child: Image.network(
-                                productsData[index].image.toString(),
-                                fit:
-                                    BoxFit.fill, // Adjust the fit to your needs
+                        child: GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, '/users',
+                              arguments: 'Ghana is my motherland'),
+                          child: Card(
+                            child: ListTile(
+                              leading: Container(
+                                width: 100,
+                                height: 150.0,
+                                child: Image.network(
+                                  productsData[index].image.toString(),
+                                  fit: BoxFit
+                                      .fill, // Adjust the fit to your needs
+                                ),
                               ),
-                            ),
-                            // CircleAvatar(
-                            //   backgroundImage: NetworkImage(
-                            //       productsData[index].image.toString(),
-                            //       scale: 200),
-                            // ),
-                            title: Text(
-                              productsData[index].title.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text(
-                              productsData[index].description.toString(),
-                              maxLines: 5,
-                              overflow: TextOverflow.fade,
+                              // CircleAvatar(
+                              //   backgroundImage: NetworkImage(
+                              //       productsData[index].image.toString(),
+                              //       scale: 200),
+                              // ),
+                              title: Text(
+                                productsData[index].title.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                productsData[index].description.toString(),
+                                maxLines: 5,
+                                overflow: TextOverflow.fade,
+                              ),
                             ),
                           ),
                         ),

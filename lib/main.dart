@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:ecommerce/screens/post/post_page.dart';
 import 'package:ecommerce/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: getAppRoutes(),
       title: 'E-Commerce App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

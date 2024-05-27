@@ -20,7 +20,7 @@ class ProductErrorState extends ProductState {
   ProductErrorState({required this.errorMessage});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [errorMessage];
 }
 
 class ProductSuccessState extends ProductState {
