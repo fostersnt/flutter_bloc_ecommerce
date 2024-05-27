@@ -1,9 +1,9 @@
 import 'package:ecommerce/data/model/product_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProductDetails extends StatelessWidget {
+  const ProductDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProductModel product =

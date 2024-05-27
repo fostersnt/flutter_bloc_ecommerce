@@ -59,7 +59,7 @@ class ProductView extends StatelessWidget {
                           child: Card(
                             color: Colors.white,
                             child: ListTile(
-                              leading: Container(
+                              leading: SizedBox(
                                 width: 100,
                                 height: 150.0,
                                 child: Image.network(

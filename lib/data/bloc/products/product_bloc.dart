@@ -1,11 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ecommerce/data/bloc/products/product_event.dart';
 import 'package:ecommerce/data/bloc/products/product_state.dart';
-import 'package:ecommerce/data/provider/product_provider.dart';
 import 'package:ecommerce/data/repository/product_repository.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
