@@ -17,10 +17,10 @@ class ProductDetails extends StatelessWidget {
           product.title,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: Colors.grey.shade300,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        color: Colors.grey.shade300,
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
