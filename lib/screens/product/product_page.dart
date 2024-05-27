@@ -49,7 +49,7 @@ class ProductView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       // String url = productsData[index].image.toString();
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(5),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: InkWell(
@@ -57,6 +57,7 @@ class ProductView extends StatelessWidget {
                               context, '/product_details',
                               arguments: productsData[index]),
                           child: Card(
+                            color: Colors.white,
                             child: ListTile(
                               leading: Container(
                                 width: 100,
