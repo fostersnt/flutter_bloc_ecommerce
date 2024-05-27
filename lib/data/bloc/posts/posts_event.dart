@@ -1,6 +1,9 @@
 part of 'posts_bloc.dart';
 
 @immutable
-sealed class PostsEvent {}
+abstract class PostsEvent extends Equatable {}
 
-class LoadPostsEvent extends PostsEvent {}
+class LoadPostsEvent extends PostsEvent {
+  @override
+  List<Object?> get props => [];
+}

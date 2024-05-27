@@ -1,5 +1,13 @@
-sealed class ProductEvent {}
+import 'package:equatable/equatable.dart';
 
-class AllProductsFetchEvent extends ProductEvent {}
+sealed class ProductEvent extends Equatable {}
 
-class SingleProductFetchEvent extends ProductEvent {}
+class AllProductsFetchEvent extends ProductEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class SingleProductFetchEvent extends ProductEvent {
+  @override
+  List<Object?> get props => [];
+}

@@ -1,16 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce/data/model/product_model.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class ProductState {}
+sealed class ProductState extends Equatable {}
 
-class ProductInitialState extends ProductState {}
+class ProductInitialState extends ProductState {
+  @override
+  List<Object?> get props => [];
+}
 
-class ProductLoadState extends ProductState {}
+class ProductLoadState extends ProductState {
+  @override
+  List<Object?> get props => [];
+}
 
 class ProductErrorState extends ProductState {
   final String errorMessage;
 
   ProductErrorState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [];
 }
 
 class ProductSuccessState extends ProductState {
@@ -18,4 +28,7 @@ class ProductSuccessState extends ProductState {
   ProductSuccessState({
     required this.products,
   });
+
+  @override
+  List<Object?> get props => products;
 }
