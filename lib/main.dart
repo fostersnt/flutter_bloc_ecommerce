@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: InkWell(
+            onTap: () => Navigator.pop(context),
+          ),
           title: const Text("E-commerce"),
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,

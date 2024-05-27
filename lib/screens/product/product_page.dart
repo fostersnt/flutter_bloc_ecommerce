@@ -52,9 +52,10 @@ class ProductView extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: GestureDetector(
-                          onTap: () => Navigator.pushNamed(context, '/users',
-                              arguments: 'Ghana is my motherland'),
+                        child: InkWell(
+                          onTap: () => Navigator.pushNamed(
+                              context, '/product_details',
+                              arguments: productsData[index]),
                           child: Card(
                             child: ListTile(
                               leading: Container(
