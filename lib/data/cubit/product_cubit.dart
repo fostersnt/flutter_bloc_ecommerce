@@ -1,7 +1,5 @@
-import 'dart:isolate';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 part 'product_state.dart';
@@ -18,7 +16,7 @@ class ProductCubit extends Cubit<ProductState> {
       if (response.statusCode == 200) {
         print('PRODUCT DATA === ${response.body}');
       } else {
-        print('PRODUCT RESPONSE === ${response}');
+        print('PRODUCT RESPONSE === $response');
       }
       emit(ProductState(productName: 'Fanta', isFake: true));
     } catch (e) {

@@ -70,14 +70,14 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   BlocProvider.of<ProductCubit>(context).setFakeProductName();
                 },
-                child: Text('Fake'),
+                child: const Text('Fake'),
               ),
               FloatingActionButton(
                 onPressed: () {
                   BlocProvider.of<ProductCubit>(context)
                       .setOriginalProductName();
                 },
-                child: Text('Original'),
+                child: const Text('Original'),
               )
             ],
           ),
