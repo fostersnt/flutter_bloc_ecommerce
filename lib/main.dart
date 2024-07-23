@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
           const Text('BLOC PATTERN E-COMMERCE APP'),
           BlocBuilder<ProductCubit, ProductState>(
             buildWhen: (previous, current) {
-              return previous != current;
+              return previous.productName != current.productName;
             },
             builder: (context, state) {
               return Text('PRODUCT NAME: ${state.productName}');
