@@ -1,4 +1,3 @@
-import 'package:ecommerce/features/posts/ui/posts_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +23,9 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           backgroundColor: Colors.black87,
         ),
-        body: PostsPage(),
+        body: const Center(
+          child: Text('BLOC PATTERN E-COMMERCE APP'),
+        ),
       ),
       // home: const MyHomePage(title: "Foster's Store"),
     );
