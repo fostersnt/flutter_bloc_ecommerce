@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class PostsModel {
   final int title;
   final int price;
@@ -12,19 +15,8 @@ class PostsModel {
       required this.image,
       required this.category});
 
-//The method below converts a json data to a posts model
-  factory PostsModel.fromJson(Map<String, dynamic> my_Json_Data) {
-    return PostsModel(
-        title: my_Json_Data['title'],
-        price: my_Json_Data['price'],
-        description: my_Json_Data['description'],
-        image: my_Json_Data['image'],
-        category: my_Json_Data['category']);
-  }
-
-//The method below converts a posts model to json data
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
       'title': title,
       'price': price,
       'description': description,
@@ -32,25 +24,19 @@ class PostsModel {
       'category': category,
     };
   }
+
+  factory PostsModel.fromMap(Map<String, dynamic> map) {
+    return PostsModel(
+      title: map['title'],
+      price: map['price'],
+      description: map['description'],
+      image: map['image'],
+      category: map['category'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PostsModel.fromJson(String source) =>
+      PostsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
-
-/*
-HOW TO USE fromJson and toJson
-
-void main() {
-  
-  // Convert JSON to object
-  Map<String, dynamic> json = {
-    'name': 'John',
-    'age': 30,
-  };
-
-  User user = User.fromJson(json);
-  print('User: ${user.name}, ${user.age}');
-  
-  // Convert object to JSON
-  Map<String, dynamic> userJson = user.toJson();
-  print('User JSON: $userJson');
-}
-
-*/
