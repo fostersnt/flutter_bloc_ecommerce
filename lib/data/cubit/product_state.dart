@@ -2,7 +2,7 @@
 part of 'product_cubit.dart';
 
 class ProductState {
-  String productName;
+  String productName = 'Unknown product';
   ProductState({
     required this.productName,
   });

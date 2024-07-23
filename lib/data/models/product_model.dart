@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class PostsModel {
+class ProductModel {
   final int title;
   final int price;
   final String description;
   final String image;
   final String category;
 
-  PostsModel(
+  ProductModel(
       {required this.title,
       required this.price,
       required this.description,
@@ -25,8 +25,8 @@ class PostsModel {
     };
   }
 
-  factory PostsModel.fromMap(Map<String, dynamic> map) {
-    return PostsModel(
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    return ProductModel(
       title: map['title'],
       price: map['price'],
       description: map['description'],
@@ -37,6 +37,6 @@ class PostsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory PostsModel.fromJson(String source) =>
-      PostsModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProductModel.fromJson(String source) =>
+      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
