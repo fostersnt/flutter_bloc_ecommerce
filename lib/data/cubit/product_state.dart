@@ -2,8 +2,7 @@
 part of 'product_cubit.dart';
 
 class ProductState {
-  String productName = 'Unknown product';
-  ProductState({
-    required this.productName,
-  });
+  final String productName;
+  final bool isFake;
+  ProductState({required this.productName, required this.isFake});
 }

@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -5,9 +7,10 @@ import 'package:http/http.dart' as http;
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(ProductState(productName: ''));
+  ProductCubit() : super(ProductState(productName: '', isFake: false));
 
-  void setOriginalProductName() => emit(ProductState(productName: 'Cowbell'));
+  void setOriginalProductName() =>
+      emit(ProductState(productName: 'Cowbell', isFake: false));
   void setFakeProductName() async {
     try {
       String url = 'https://fakestoreapi.com/products';
@@ -17,7 +20,7 @@ class ProductCubit extends Cubit<ProductState> {
       } else {
         print('PRODUCT RESPONSE === ${response}');
       }
-      emit(ProductState(productName: 'Fanta'));
+      emit(ProductState(productName: 'Fanta', isFake: true));
     } catch (e) {
       print('PRODUCT FETCH ERROR === ${e.toString()}');
     }

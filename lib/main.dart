@@ -32,6 +32,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String fakePrompt = 'This product is fake';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("E-commerce"),
@@ -43,9 +45,16 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text('BLOC PATTERN E-COMMERCE APP'),
-          BlocBuilder<ProductCubit, ProductState>(
-            buildWhen: (previous, current) {
-              return previous.productName != current.productName;
+          BlocConsumer<ProductCubit, ProductState>(
+            listener: (context, state) {
+              if (state.isFake) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(fakePrompt),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
+              }
             },
             builder: (context, state) {
               return Text('PRODUCT NAME: ${state.productName}');
