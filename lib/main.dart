@@ -47,17 +47,28 @@ class HomePage extends StatelessWidget {
           const Text('BLOC PATTERN E-COMMERCE APP'),
           BlocConsumer<ProductCubit, ProductState>(
             listener: (context, state) {
-              if (state.isFake) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(fakePrompt),
-                    duration: Duration(seconds: 1),
+              if (state is ProductLoadingState) {
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   const SnackBar(
+                //     content: Text(fakePrompt),
+                //     duration: Duration(seconds: 1),
+                //   ),
+                // );
+                const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
                   ),
                 );
               }
             },
             builder: (context, state) {
-              return Text('PRODUCT NAME: ${state.productName}');
+              if (state is ProductSuccessState && state.products.isNotEmpty) {
+                return Text('PRODUCT NAME: ${state.products[0].title}');
+              } else {
+                return const Center(
+                  child: Text('ERRORS SEEM TO EXIST'),
+                );
+              }
             },
           ),
           const SizedBox(
