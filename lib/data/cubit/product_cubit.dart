@@ -11,8 +11,15 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 class ProductCubit extends Cubit<ProductState> with HydratedMixin {
   ProductCubit() : super(ProductSuccessState(products: [], isFake: false));
 
-  void setOriginalProductName() =>
-      emit(ProductSuccessState(products: [], isFake: false));
+  void setOriginalProductName() => emit(ProductSuccessState(products: [
+        ProductModel(
+            id: 1,
+            title: 'God of war',
+            price: 22.1,
+            description: 'First description',
+            image: 'image',
+            category: 'minerals')
+      ], isFake: false));
   void setFakeProductName() async {
     try {
       emit(ProductLoadingState());
@@ -23,10 +30,12 @@ class ProductCubit extends Cubit<ProductState> with HydratedMixin {
         print('PRODUCT DATA === $jsonData');
         List<ProductModel> data = [];
         for (var i = 0; i < jsonData.length; i++) {
+          print('INDIVIDUAL DATA: $i === ${jsonData[i]}');
           data.add(ProductModel.fromMap(jsonData[i]));
         }
         print('DDDDD === ${data[0].title}');
         emit(ProductSuccessState(products: data, isFake: true));
+        // print();
       } else {
         print('PRODUCT RESPONSE === $response');
       }
