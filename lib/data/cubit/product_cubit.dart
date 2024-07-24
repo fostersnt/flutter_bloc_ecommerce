@@ -8,7 +8,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 // part 'product_state.dart';
 
-class ProductCubit extends Cubit<ProductState> with HydratedMixin {
+class ProductCubit extends HydratedCubit<ProductState> {
   ProductCubit() : super(ProductSuccessState(products: [], isFake: false));
 
   void setOriginalProductName() => emit(ProductSuccessState(products: [
